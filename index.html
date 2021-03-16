@@ -102,7 +102,12 @@
         //liczenie i wyswietlanie wyniku poprzez funkcje eval
         function result(){
             let result = eval(currentInput.value);
-            resultInput.value = "=" + result;
+            resultInput.value = "= " + result;
+
+            if(result == undefined){
+                resultInput.value = "";
+            }
+
             clearInput();
         }
 
