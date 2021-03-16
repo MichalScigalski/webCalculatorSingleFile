@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <h1>Kalkulator</h1>
+            <div class="calculator_input">
+                <input type="text" id="current" disabled>
+                <div class="result_section">
+                    <input type="text" id="result" placeholder="Wynik:" disabled>
+                    <input type="submit" value="x" onclick="clearResult()" id="clearResult">
+                </div>
+            </div>
+       
+            <div class="calculator_buttons">
+                <div class="calculator_buttonsLeft">
+                    <input type="button" onclick="mr()" value="MR">
+                    <input type="button" onclick="mrPlus()" value="MR+">
+                    <input type="button" onclick="mrMinus()" value="MR-">
+                    
+                    <input type="button" class="number" onclick="printValue('7')" value="7">
+                    <input type="button" class="number" onclick="printValue('8')" value="8">
+                    <input type="button" class="number" onclick="printValue('9')" value="9">
+                    <input type="button" class="number" onclick="printValue('4')" value="4">
+                    <input type="button" class="number" onclick="printValue('5')" value="5">
+                    <input type="button" class="number" onclick="printValue('6')" value="6">
+                    <input type="button" class="number" onclick="printValue('1')" value="1">
+                    <input type="button" class="number" onclick="printValue('2')" value="2">
+                    <input type="button" class="number" onclick="printValue('3')" value="3">
+
+                    <input type="button" id="null" onclick="printValue('0')" value="0">
+                    <input type="button" value="." onclick="printValue('.')">
+                </div>
+
+                <div class="calculator_buttonsRight">
+                    <input type="button" id="clear" onclick="clearInput()" value="C">
+                    <input type="button" class="operator" onclick="printValue('-')" value="-">
+                    <input type="button" class="operator" onclick="printValue('*')" value="*">
+                    <input type="button" class="operator" onclick="printValue('/')"  value="/">
+                    <input type="button" class="operator" onclick="printValue('+')" id="plus" value="+">
+                    <input type="button" id="equal" onclick="result()" value="=">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const clearButton = document.querySelector('#clear');
+        const currentInput = document.querySelector('#current');
+        const resultInput = document.querySelector('#result');
+        const clearResultButton = document.querySelector('#clearResult');
+
+        var data = '';
+
+        //czyszczenie inputa
+        function clearInput(){
+            currentInput.value = '';
+        }
+
+        //czyszczenie wyniku
+        function clearResult(){
+            resultInput.value = '';
+        }
+
+        //wyswietlanie wartosci do inputa
+        //funkcja przyjmuje paramater val np. 3 i wyswietla ją do inputa
+        function printValue(val){
+
+            if(val=="/" || val=="+" || val=="*" || val=="-" || val=="."){
+
+                if(currentInput.value.endsWith("+") || currentInput.value.endsWith("*") || currentInput.value.endsWith("-") || currentInput.value.endsWith("/") || currentInput.value.endsWith(".")){
+                currentInput.value = currentInput.value;
+                }
+                
+                else{
+                currentInput.value+=val;
+                }
+            }
+
+            else{
+                currentInput.value+=val;
+            }
+
+            if(currentInput.value.startsWith("+") || currentInput.value.startsWith("*") || currentInput.value.startsWith("-") || currentInput.value.startsWith("/") || currentInput.value.startsWith(".")){
+                currentInput.value = '';
+            }
+
+            else{
+                currentInput.value=currentInput.value;
+            }
+        }
+
+        //liczenie i wyswietlanie wyniku poprzez funkcje eval
+        function result(){
+            let result = eval(currentInput.value);
+            resultInput.value = "=" + result;
+            clearInput();
+        }
+
+        // zapisywanie w pamieci
+        function mr(){
+            currentInput.value = data;
+        }
+
+        function mrPlus(){
+            data = currentInput.value;
+        }
+
+        function mrMinus(){
+            data = '';
+        }
+    </script>
+</body>
+</html>
