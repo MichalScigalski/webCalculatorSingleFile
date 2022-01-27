@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator</title>
+    <title>calc</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -135,7 +135,7 @@
 <body>
     <div class="container">
         <div class="calculator">
-            <h1>Kalkulator</h1>
+            <h1>Calculator</h1>
             <div class="calculator_input">
                 <input type="text" id="current" disabled>
                 <div class="result_section">
@@ -185,18 +185,14 @@
 
         var data = '';
 
-        //czyszczenie inputa
         function clearInput(){
             currentInput.value = '';
         }
 
-        //czyszczenie wyniku
         function clearResult(){
             resultInput.value = '';
         }
 
-        //wyswietlanie wartosci do inputa
-        //funkcja przyjmuje paramater val np. 3 i wyswietla ją do inputa
         function printValue(val){
 
             if(val=="/" || val=="+" || val=="*" || val=="-" || val=="."){
@@ -223,7 +219,6 @@
             }
         }
 
-        //liczenie i wyswietlanie wyniku poprzez funkcje eval
         function result(){
             let result = eval(currentInput.value);
             resultInput.value = "= " + result;
@@ -235,7 +230,6 @@
             clearInput();
         }
 
-        // zapisywanie w pamieci
         function mr(){
             currentInput.value = data;
         }
